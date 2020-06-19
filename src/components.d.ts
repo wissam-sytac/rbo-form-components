@@ -5,22 +5,24 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { FormInputChangeEvent, } from "./events";
 export namespace Components {
-    interface RboBaseInput {
+    interface RboCurrencyInput {
+        "currency": string;
+        "isDisabled": boolean;
+        "isRequired": string;
         "label": string;
         "name": string;
-        "type": "text" | "password" | "number";
     }
     interface RboForm {
-        "onSubmit": Function;
     }
 }
 declare global {
-    interface HTMLRboBaseInputElement extends Components.RboBaseInput, HTMLStencilElement {
+    interface HTMLRboCurrencyInputElement extends Components.RboCurrencyInput, HTMLStencilElement {
     }
-    var HTMLRboBaseInputElement: {
-        prototype: HTMLRboBaseInputElement;
-        new (): HTMLRboBaseInputElement;
+    var HTMLRboCurrencyInputElement: {
+        prototype: HTMLRboCurrencyInputElement;
+        new (): HTMLRboCurrencyInputElement;
     };
     interface HTMLRboFormElement extends Components.RboForm, HTMLStencilElement {
     }
@@ -29,21 +31,23 @@ declare global {
         new (): HTMLRboFormElement;
     };
     interface HTMLElementTagNameMap {
-        "rbo-base-input": HTMLRboBaseInputElement;
+        "rbo-currency-input": HTMLRboCurrencyInputElement;
         "rbo-form": HTMLRboFormElement;
     }
 }
 declare namespace LocalJSX {
-    interface RboBaseInput {
+    interface RboCurrencyInput {
+        "currency"?: string;
+        "isDisabled"?: boolean;
+        "isRequired"?: string;
         "label"?: string;
         "name": string;
-        "type"?: "text" | "password" | "number";
+        "onFormInputChangeEvent"?: (event: CustomEvent<FormInputChangeEvent>) => void;
     }
     interface RboForm {
-        "onSubmit"?: Function;
     }
     interface IntrinsicElements {
-        "rbo-base-input": RboBaseInput;
+        "rbo-currency-input": RboCurrencyInput;
         "rbo-form": RboForm;
     }
 }
@@ -51,7 +55,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "rbo-base-input": LocalJSX.RboBaseInput & JSXBase.HTMLAttributes<HTMLRboBaseInputElement>;
+            "rbo-currency-input": LocalJSX.RboCurrencyInput & JSXBase.HTMLAttributes<HTMLRboCurrencyInputElement>;
             "rbo-form": LocalJSX.RboForm & JSXBase.HTMLAttributes<HTMLRboFormElement>;
         }
     }

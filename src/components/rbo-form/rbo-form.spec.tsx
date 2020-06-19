@@ -11,10 +11,10 @@ describe('rbo-form', () => {
       <rbo-form>
         <mock:shadow-root>
           <form>
-            <div>
-              <slot />
+            <slot></slot>
+            <div class="action-wrap">
+              <button>Submit</button>
             </div>
-            <button>Submit</button>
           </form>
         </mock:shadow-root>
       </rbo-form>

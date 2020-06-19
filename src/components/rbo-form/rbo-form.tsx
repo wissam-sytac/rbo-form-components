@@ -1,5 +1,8 @@
-import { Component, Prop, h, State } from '@stencil/core';
+import { Component, h, State, Listen } from '@stencil/core';
 
+import {FormInputChangeEvent} from '../../events';
+
+// @TODO When submitted, invoke callback or trigger an event???
 @Component({
   tag: 'rbo-form',
   styleUrl: 'rbo-form.css',
@@ -9,7 +12,16 @@ export class RboForm {
   @State() values: object = {};
   @State() errors: object = {};
 
-  @Prop() onSubmit: Function = (x => x);
+  @Listen('formInputChangeEvent')
+  formInputChangeHandler(event: CustomEvent<FormInputChangeEvent>) {
+    console.log('=======');
+    console.log('Values: ', this.values);
+    console.log('Errors: ', this.errors);
+    console.log('=======');
+    const { name, value, errors } = event.detail;
+    this.values[name] = value;
+    this.errors[name] = errors;
+  }
 
   // @TODO: implement
   validateSelf() {
@@ -19,18 +31,18 @@ export class RboForm {
   handleSubmit = (evt) => {
     evt.preventDefault();
     if (this.validateSelf()) {
-      return this.onSubmit(this.values);
+      // @TODO handle success
     }
     // @TODO: what to do if form is invalid?
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <slot />
+      <form>
+        <slot />
+        <div class="action-wrap">
+          <button>Submit</button>
         </div>
-        <button>Submit</button>
       </form>
     );
   }

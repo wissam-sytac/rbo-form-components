@@ -11,20 +11,25 @@ import {FormInputChangeEvent} from '../../events';
 export class RboForm {
   @State() values: object = {};
   @State() errors: object = {};
+  @State() isValid: boolean = false;
 
   @Listen('formInputChangeEvent')
   formInputChangeHandler(event: CustomEvent<FormInputChangeEvent>) {
-    console.log('Values: ', this.values);
-    console.log('Errors: ', this.errors);
-    console.log('=======');
     const { name, value, errors } = event.detail;
     this.values[name] = value;
     this.errors[name] = errors;
+    this.isValid = this.validateSelf();
+
+    console.log('=======');
+    console.log('Values: ', this.values);
+    console.log('Errors: ', this.errors);
+    console.log('isValid: ', this.isValid);
   }
 
-  // @TODO: implement
   validateSelf() {
-    return false;
+    // Check total number of errors is 0
+    const totalNumberOfErrors = Object.values(this.errors).reduce((acc, errors) => acc + errors.length, 0);
+    return totalNumberOfErrors === 0;
   }
 
   handleSubmit = (evt) => {
@@ -37,10 +42,10 @@ export class RboForm {
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <slot />
         <div class="action-wrap">
-          <button>Submit</button>
+          <button disabled={!this.isValid}>Submit</button>
         </div>
       </form>
     );

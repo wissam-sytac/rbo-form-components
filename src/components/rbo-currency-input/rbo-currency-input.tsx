@@ -3,7 +3,7 @@ import {FormInputChangeEvent} from '../../events';
 
 // @TODO move this elsewhere
 function stripNonNumericChars(str: string) {
-  return str.replace(/\D/g,'');
+  return str === '' ? str : str.replace(/\D/g,'');
 }
 
 // @TODO Add support for required
@@ -15,8 +15,8 @@ function stripNonNumericChars(str: string) {
   shadow: true,
 })
 export class RboCurrencyInput implements ComponentInterface {
-  @Prop() isRequired: string;
-  @Prop() isDisabled: string = 'false';
+  @Prop() required: string = 'false';
+  @Prop() disabled: string = 'false';
   @Prop() name!: string;
   @Prop() label: string;
   @Prop() currency: string = 'EUR';
@@ -37,8 +37,22 @@ export class RboCurrencyInput implements ComponentInterface {
 
   // @TODO Think about localization/i18n for error messages
   componentWillLoad() {
-    this.errors = this.isRequired === 'true' ? ['This field is required'] : [];
-    this.emitStateUpstream();
+    this.errors = (this.isRequired && this.isEmpty) ? ['This field is required'] : [];
+    if (!this.isDisabled) {
+      this.emitStateUpstream();
+    }
+  }
+
+  get isDisabled() {
+    return this.disabled === 'true';
+  }
+
+  get isRequired() {
+    return this.required === 'true';
+  }
+
+  get isEmpty() {
+    return this.whole === '' && this.decimal === '';
   }
 
   emitStateUpstream() {
@@ -50,9 +64,11 @@ export class RboCurrencyInput implements ComponentInterface {
   }
 
   handleChangeWhole = (evt) => {
-    const modifiedValue = Number(stripNonNumericChars(evt.target.value)).toFixed(0);
+    // @TODO: improve the check -> case where the input is empty
+    const modifiedValue = evt.target.value === '' ? evt.target.value : Number(stripNonNumericChars(evt.target.value)).toFixed(0);
     this.whole = modifiedValue;
     this.wholeInputEl.value = modifiedValue;
+    this.errors = (this.isRequired && this.isEmpty) ? ['This field is required'] : [];
     this.emitStateUpstream();
   }
 
@@ -60,13 +76,14 @@ export class RboCurrencyInput implements ComponentInterface {
     const modifiedValue = stripNonNumericChars(evt.target.value);
     this.decimal = modifiedValue;
     this.decimalInputEl.value = modifiedValue;
+    this.errors = (this.isRequired && this.isEmpty) ? ['This field is required'] : [];
     this.emitStateUpstream();
   }
 
   render() {
     return (
       <Host
-        aria-disabled={('true' === this.isDisabled) ? 'true' : null}
+        aria-disabled={this.isDisabled ? 'true' : null}
       >
         <span>{this.currency}</span>
         <div class="input">
@@ -76,7 +93,7 @@ export class RboCurrencyInput implements ComponentInterface {
             placeholder="0"
             value={this.whole}
             ref={(el) => this.wholeInputEl = el as HTMLInputElement}
-            disabled={this.isDisabled === 'true'}
+            disabled={this.isDisabled}
           />
         </div>
         <span>.</span>
@@ -88,7 +105,7 @@ export class RboCurrencyInput implements ComponentInterface {
             value={this.decimal}
             maxlength={2}
             ref={(el) => this.decimalInputEl = el as HTMLInputElement}
-            disabled={this.isDisabled === 'true'}
+            disabled={this.isDisabled}
           />
         </div>
       </Host>

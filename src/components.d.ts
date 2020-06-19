@@ -9,10 +9,10 @@ import { FormInputChangeEvent, } from "./events";
 export namespace Components {
     interface RboCurrencyInput {
         "currency": string;
-        "isDisabled": string;
-        "isRequired": string;
+        "disabled": string;
         "label": string;
         "name": string;
+        "required": string;
     }
     interface RboForm {
     }
@@ -38,11 +38,11 @@ declare global {
 declare namespace LocalJSX {
     interface RboCurrencyInput {
         "currency"?: string;
-        "isDisabled"?: string;
-        "isRequired"?: string;
+        "disabled"?: string;
         "label"?: string;
         "name": string;
         "onFormInputChangeEvent"?: (event: CustomEvent<FormInputChangeEvent>) => void;
+        "required"?: string;
     }
     interface RboForm {
     }

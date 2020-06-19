@@ -13,7 +13,7 @@ describe('rbo-form', () => {
           <form>
             <slot></slot>
             <div class="action-wrap">
-              <button>Submit</button>
+              <button disabled="">Submit</button>
             </div>
           </form>
         </mock:shadow-root>

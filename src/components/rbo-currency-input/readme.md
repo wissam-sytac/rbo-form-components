@@ -7,13 +7,13 @@
 
 ## Properties
 
-| Property            | Attribute     | Description | Type      | Default     |
-| ------------------- | ------------- | ----------- | --------- | ----------- |
-| `currency`          | `currency`    |             | `string`  | `'EUR'`     |
-| `isDisabled`        | `is-disabled` |             | `boolean` | `false`     |
-| `isRequired`        | `is-required` |             | `string`  | `undefined` |
-| `label`             | `label`       |             | `string`  | `undefined` |
-| `name` _(required)_ | `name`        |             | `string`  | `undefined` |
+| Property            | Attribute  | Description | Type     | Default     |
+| ------------------- | ---------- | ----------- | -------- | ----------- |
+| `currency`          | `currency` |             | `string` | `'EUR'`     |
+| `disabled`          | `disabled` |             | `string` | `'false'`   |
+| `label`             | `label`    |             | `string` | `undefined` |
+| `name` _(required)_ | `name`     |             | `string` | `undefined` |
+| `required`          | `required` |             | `string` | `undefined` |
 
 
 ## Events

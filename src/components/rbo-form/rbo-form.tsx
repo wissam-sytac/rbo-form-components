@@ -14,7 +14,6 @@ export class RboForm {
 
   @Listen('formInputChangeEvent')
   formInputChangeHandler(event: CustomEvent<FormInputChangeEvent>) {
-    console.log('=======');
     console.log('Values: ', this.values);
     console.log('Errors: ', this.errors);
     console.log('=======');

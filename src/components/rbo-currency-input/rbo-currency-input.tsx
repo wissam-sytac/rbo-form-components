@@ -6,9 +6,6 @@ function stripNonNumericChars(str: string) {
   return str === '' ? str : str.replace(/\D/g,'');
 }
 
-// @TODO Add support for required
-// @TODO Add support for disabled
-// @TODO Handle user enters invalid input
 @Component({
   tag: 'rbo-currency-input',
   styleUrl: 'rbo-currency-input.css',

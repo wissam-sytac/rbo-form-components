@@ -3,3 +3,8 @@ export interface FormInputChangeEvent {
   value: string | number | null | undefined;
   errors: string[];
 }
+
+export interface FormSubmittedEvent {
+  formId: string;
+  values: object;
+}

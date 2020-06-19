@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { FormInputChangeEvent, } from "./events";
+import { FormInputChangeEvent, FormSubmittedEvent, } from "./events";
 export namespace Components {
     interface RboCurrencyInput {
         "currency": string;
@@ -45,6 +45,7 @@ declare namespace LocalJSX {
         "required"?: string;
     }
     interface RboForm {
+        "onFormSubmittedEvent"?: (event: CustomEvent<FormSubmittedEvent>) => void;
     }
     interface IntrinsicElements {
         "rbo-currency-input": RboCurrencyInput;

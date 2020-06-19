@@ -3,11 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <title>Stencil Component Starter</title>
-
+  <title>Rbo Form Components</title>
   <script type="module" src="/build/rbo-form-components.esm.js"></script>
   <script nomodule src="/build/rbo-form-components.js"></script>
-
 </head>
 <body>
   <rbo-form>
@@ -15,5 +13,11 @@
     <rbo-currency-input currency="$" name="monthlyPayment"></rbo-currency-input>
     <rbo-currency-input currency="$" name="monthlyPayment" disabled="true"></rbo-currency-input>
   </rbo-form>
+  <script>
+    const rboForm = document.querySelector('rbo-form');
+    rboForm.addEventListener('formSubmittedEvent', evt => {
+      window.alert(JSON.stringify(evt.detail.values));
+    })
+  </script>
 </body>
 </html>

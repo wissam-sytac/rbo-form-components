@@ -7,6 +7,10 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { FormInputChangeEvent, FormSubmittedEvent, } from "./events";
 export namespace Components {
+    interface RboButton {
+        "disabled": boolean;
+        "text": string;
+    }
     interface RboCurrencyInput {
         "currency": string;
         "disabled": string;
@@ -18,6 +22,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLRboButtonElement extends Components.RboButton, HTMLStencilElement {
+    }
+    var HTMLRboButtonElement: {
+        prototype: HTMLRboButtonElement;
+        new (): HTMLRboButtonElement;
+    };
     interface HTMLRboCurrencyInputElement extends Components.RboCurrencyInput, HTMLStencilElement {
     }
     var HTMLRboCurrencyInputElement: {
@@ -31,11 +41,16 @@ declare global {
         new (): HTMLRboFormElement;
     };
     interface HTMLElementTagNameMap {
+        "rbo-button": HTMLRboButtonElement;
         "rbo-currency-input": HTMLRboCurrencyInputElement;
         "rbo-form": HTMLRboFormElement;
     }
 }
 declare namespace LocalJSX {
+    interface RboButton {
+        "disabled"?: boolean;
+        "text"?: string;
+    }
     interface RboCurrencyInput {
         "currency"?: string;
         "disabled"?: string;
@@ -48,6 +63,7 @@ declare namespace LocalJSX {
         "onFormSubmittedEvent"?: (event: CustomEvent<FormSubmittedEvent>) => void;
     }
     interface IntrinsicElements {
+        "rbo-button": RboButton;
         "rbo-currency-input": RboCurrencyInput;
         "rbo-form": RboForm;
     }
@@ -56,6 +72,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "rbo-button": LocalJSX.RboButton & JSXBase.HTMLAttributes<HTMLRboButtonElement>;
             "rbo-currency-input": LocalJSX.RboCurrencyInput & JSXBase.HTMLAttributes<HTMLRboCurrencyInputElement>;
             "rbo-form": LocalJSX.RboForm & JSXBase.HTMLAttributes<HTMLRboFormElement>;
         }

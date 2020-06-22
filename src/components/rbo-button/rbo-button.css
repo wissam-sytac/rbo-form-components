@@ -1,0 +1,30 @@
+:host {
+  --font: var(--rbo-font-main);
+  --font-size: var(--rbo-font-size-regular);
+}
+
+:host(.primary) {
+  --bgcolor: var(--rbo-color-primary);
+  --color: var(--rbo-font-color-primary-contrast);
+}
+
+:host(.disabled) {
+  --bgcolor: var(--rbo-color-disabled);
+  --color: var(--rbo-font-color-primary);
+}
+
+button {
+  font-family: var(--font);
+  font-size: var(--font-size);
+  outline: none;
+  min-width: 200px;
+  border-radius: 4px;
+  padding: var(--rbo-spacing-sm) var(--rbo-spacing-xs);
+  border: 1px solid var(--bgcolor);
+  background-color: var(--bgcolor);
+  color: var(--color);
+}
+
+:host(.disabled) button {
+  cursor: default;
+}

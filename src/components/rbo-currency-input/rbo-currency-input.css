@@ -1,15 +1,25 @@
 :host {
+  --font: var(--rbo-font-main);
+  --font-size: var(--rbo-font-size-regular);
+
   display: flex;
   align-items: center;
 }
 
-.input {
-  padding: 2px;
-  border: 2px solid #cccccc;
+.input-wrap {
+  padding: var(--rbo-spacing-xs);
+  border: 1px solid #cccccc;
   height: 30px;
+  border-radius: var(--rbo-spacing-xs);
+}
+
+.input-decimals {
+  width: 40px;
 }
 
 input {
+  font-family: var(--font);
+  font-size: var(--font-size);
   border: none;
   outline: none;
   margin: 0;
@@ -17,5 +27,4 @@ input {
   width: 100%;
   height: 30px;
   line-height: 30px;
-  font-size: 20px;
 }

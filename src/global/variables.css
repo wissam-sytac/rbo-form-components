@@ -1,0 +1,23 @@
+:root {
+  /* Colors */
+  --rbo-color-primary: #5469D4;
+  --rbo-color-error: #CD3D64;
+  --rbo-color-disabled: #CCCCCC;
+
+
+  /* Typography */
+  --rbo-font-main: "SourceSansPro", sans-serif;
+
+  --rbo-font-size-xs: 12px;
+  --rbo-font-size-sm: 14px;
+  --rbo-font-size-regular: 16px;
+
+  --rbo-font-color-primary: #444444;
+  --rbo-font-color-primary-contrast: #ffffff;
+
+
+  /* Spacing */
+  --rbo-spacing-xs: 4px;
+  --rbo-spacing-sm: 8px;
+  --rbo-spacing-md: 12px;
+}

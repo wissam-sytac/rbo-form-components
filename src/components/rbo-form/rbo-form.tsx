@@ -1,8 +1,6 @@
-import {Component, h, State, Listen, Event, EventEmitter} from '@stencil/core';
-
+import {Component, h, State, Listen, Event, EventEmitter, Host} from '@stencil/core';
 import {FormInputChangeEvent, FormSubmittedEvent} from '../../events';
 
-// @TODO When submitted, invoke callback or trigger an event???
 @Component({
   tag: 'rbo-form',
   styleUrl: 'rbo-form.css',
@@ -42,8 +40,8 @@ export class RboForm {
   handleSubmit = (evt) => {
     evt.preventDefault();
     if (this.isValid) {
-      console.log('YES!!!!');
       this.formSubmittedEventEmitter.emit({
+        // @TODO: Add font id
         formId: '__only_one__',
         values: this.values,
       });
@@ -53,12 +51,14 @@ export class RboForm {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <slot />
-        <div class="action-wrap">
-          <button disabled={!this.isValid}>Submit</button>
-        </div>
-      </form>
+      <Host>
+        <form onSubmit={this.handleSubmit}>
+          <slot/>
+          <div class="action-wrap">
+            <rbo-button disabled={!this.isValid} text="Submit"/>
+          </div>
+        </form>
+      </Host>
     );
   }
 }

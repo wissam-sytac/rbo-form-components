@@ -83,7 +83,7 @@ export class RboCurrencyInput implements ComponentInterface {
         aria-disabled={this.isDisabled ? 'true' : null}
       >
         <span>{this.currency}</span>
-        <div class="input">
+        <div class="input-wrap">
           <input
             type="text"
             onInput={this.handleChangeWhole}
@@ -94,7 +94,7 @@ export class RboCurrencyInput implements ComponentInterface {
           />
         </div>
         <span>.</span>
-        <div class="input">
+        <div class="input-wrap input-decimals">
           <input
             type="text"
             onInput={this.handleChangeDecimal}

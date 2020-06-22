@@ -1,25 +1,14 @@
 :host {
   --font: var(--rbo-font-main);
-  --font-size: var(--rbo-font-size-regular);
+  --font-size: var(--rbo-font-size-lg);
 
   display: flex;
   align-items: center;
-}
-
-.input-wrap {
-  padding: var(--rbo-spacing-xs);
-  border: 1px solid #cccccc;
-  height: 30px;
-  border-radius: var(--rbo-spacing-xs);
-}
-
-.input-decimals {
-  width: 40px;
+  font-family: var(--font);
+  font-size: var(--font-size);
 }
 
 input {
-  font-family: var(--font);
-  font-size: var(--font-size);
   border: none;
   outline: none;
   margin: 0;
@@ -27,4 +16,43 @@ input {
   width: 100%;
   height: 30px;
   line-height: 30px;
+  font-family: var(--font);
+  font-size: var(--font-size);
+}
+
+input:disabled {
+  background-color: var(--rbo-color-disabled);
+}
+
+.unit {
+  margin-right: var(--rbo-spacing-xs);
+}
+
+.input-wrap {
+  padding: var(--rbo-spacing-xs);
+  border: 1px solid var(--rbo-color-disabled);
+  height: 30px;
+  border-radius: var(--rbo-spacing-xs);
+}
+
+.input-whole {
+  width: 80px;
+}
+
+.input-whole input {
+  text-align: right;
+}
+
+.input-decimals {
+  width: 30px;
+}
+
+.decimal-dot {
+  margin: 0 var(--rbo-spacing-xs);
+  font-size: var(--rbo-font-size-lg);
+}
+
+:host(.disabled) > .input-wrap {
+  background-color: var(--rbo-color-disabled);
+  border-color: var(--rbo-color-disabled);
 }

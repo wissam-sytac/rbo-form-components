@@ -5,7 +5,16 @@ describe('rbo-form', () => {
     const page = await newE2EPage();
     await page.setContent('<rbo-form></rbo-form>');
 
-    const element = await page.find('rbo-form');
-    expect(element).toHaveClass('hydrated');
+    const el = await page.find('rbo-form');
+    expect(el).not.toBeNull();
+  });
+
+  it('renders disabled by default', async () => {
+    const page = await newE2EPage();
+    await page.setContent('<rbo-form></rbo-form>');
+
+    const buttonEl = await page.find('rbo-form >>> rbo-button');
+    const buttonDisabledValue = await buttonEl.getProperty('disabled');
+    expect(buttonDisabledValue).toEqual(true);
   });
 });

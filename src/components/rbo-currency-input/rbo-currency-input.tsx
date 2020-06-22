@@ -1,10 +1,6 @@
 import { Component, ComponentInterface, Host, h, State, Prop, Event, EventEmitter } from '@stencil/core';
 import {FormInputChangeEvent} from '../../events';
-
-// @TODO move this elsewhere
-function stripNonNumericChars(str: string) {
-  return str === '' ? str : str.replace(/\D/g,'');
-}
+import stripNonNumericChars from '../../utils/stripNonNumericChars';
 
 @Component({
   tag: 'rbo-currency-input',
@@ -16,7 +12,8 @@ export class RboCurrencyInput implements ComponentInterface {
   @Prop() disabled: string = 'false';
   @Prop() name!: string;
   @Prop() label: string;
-  @Prop() currency: string = 'EUR';
+  @Prop() unit: string = '\u20AC'; // @TODO properly handle currency symbol mappings
+  @Prop() maxWholeLength: number = 6;
 
   @State() whole: string = '';
   @State() decimal: string = '';
@@ -79,21 +76,20 @@ export class RboCurrencyInput implements ComponentInterface {
 
   render() {
     return (
-      <Host
-        aria-disabled={this.isDisabled ? 'true' : null}
-      >
-        <span>{this.currency}</span>
-        <div class="input-wrap">
+      <Host aria-disabled={this.isDisabled ? 'true' : null} class={this.isDisabled ? 'disabled' : ''}>
+        {this.unit && <span class="unit">{this.unit}</span>}
+        <div class="input-wrap input-whole">
           <input
             type="text"
             onInput={this.handleChangeWhole}
             placeholder="0"
             value={this.whole}
+            maxlength={this.maxWholeLength}
             ref={(el) => this.wholeInputEl = el as HTMLInputElement}
             disabled={this.isDisabled}
           />
         </div>
-        <span>.</span>
+        <span class="decimal-dot">,</span>
         <div class="input-wrap input-decimals">
           <input
             type="text"

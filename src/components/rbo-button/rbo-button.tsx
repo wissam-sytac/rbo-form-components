@@ -12,9 +12,7 @@ export class RboButton implements ComponentInterface {
   render() {
     return (
       <Host class={this.disabled ? 'disabled' : 'primary'}>
-        <button
-          disabled={this.disabled}
-        >
+        <button disabled={this.disabled}>
           {this.text}
         </button>
       </Host>

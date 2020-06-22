@@ -12,11 +12,12 @@ export namespace Components {
         "text": string;
     }
     interface RboCurrencyInput {
-        "currency": string;
         "disabled": string;
         "label": string;
+        "maxWholeLength": number;
         "name": string;
         "required": string;
+        "unit": string;
     }
     interface RboForm {
     }
@@ -52,12 +53,13 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     interface RboCurrencyInput {
-        "currency"?: string;
         "disabled"?: string;
         "label"?: string;
+        "maxWholeLength"?: number;
         "name": string;
         "onFormInputChangeEvent"?: (event: CustomEvent<FormInputChangeEvent>) => void;
         "required"?: string;
+        "unit"?: string;
     }
     interface RboForm {
         "onFormSubmittedEvent"?: (event: CustomEvent<FormSubmittedEvent>) => void;

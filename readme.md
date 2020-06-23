@@ -88,8 +88,10 @@ npm t
 ```
 
 ## Improvements / Future work
-- Since the currency input component can be repurposed to any decimal number type of input, it probably would have made more sense to 
-name it as "decimal input".
+- Since the currency input component can be repurposed for any type of decimal input. We should explore the possibility of having one generic input
+for decimals on top of which the currency input component could be built.
 - Snapshot tests: would streamline writing unit tests (shallow rendering) for components
 - Add labels to inputs
 - Implement additional form functionality to handle non-field errors such as network errors for instance
+- Cross browser testing
+- Increase test coverage for component behavior

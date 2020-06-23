@@ -56,3 +56,23 @@ input:disabled {
   background-color: var(--rbo-color-disabled);
   border-color: var(--rbo-color-disabled);
 }
+
+:host(.disabled) > .unit {
+  color: var(--rbo-color-disabled);
+}
+
+:host(.disabled) > .decimal-dot {
+  color: var(--rbo-color-disabled);
+}
+
+:host(.has-errors) > .input-wrap {
+  border-color: var(--rbo-color-error);
+}
+
+:host(.has-errors) > .unit {
+  color: var(--rbo-color-error);
+}
+
+:host(.has-errors) > .decimal-dot {
+  color: var(--rbo-color-error);
+}

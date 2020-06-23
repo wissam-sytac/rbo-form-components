@@ -23,6 +23,7 @@ button {
   border: 1px solid var(--bgcolor);
   background-color: var(--bgcolor);
   color: var(--color);
+  cursor: pointer;
 }
 
 :host(.disabled) button {

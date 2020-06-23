@@ -1,7 +1,7 @@
 :root {
   /* Colors */
   --rbo-color-primary: #5469D4;
-  --rbo-color-error: #CD3D64;
+  --rbo-color-error: #B00020;
   --rbo-color-disabled: #CCCCCC;
 
 
@@ -21,5 +21,7 @@
   /* Spacing */
   --rbo-spacing-xs: 4px;
   --rbo-spacing-sm: 8px;
-  --rbo-spacing-md: 12px;
+  --rbo-spacing-regular: 12px;
+  --rbo-spacing-md: 16px;
+  --rbo-spacing-lg: 20px;
 }

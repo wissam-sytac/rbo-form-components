@@ -1,0 +1,7 @@
+:host {
+  font-family: var(--rbo-font-main);
+}
+
+.input-control {
+  margin-bottom: var(--rbo-spacing-md);
+}

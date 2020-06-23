@@ -5,6 +5,14 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property    | Attribute | Description | Type       | Default     |
+| ----------- | --------- | ----------- | ---------- | ----------- |
+| `apiErrors` | --        |             | `string[]` | `[]`        |
+| `id`        | `id`      |             | `string`   | `undefined` |
+
+
 ## Events
 
 | Event                | Description | Type                              |

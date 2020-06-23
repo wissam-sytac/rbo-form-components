@@ -9,6 +9,7 @@ import { FormInputChangeEvent, FormSubmittedEvent, } from "./events";
 export namespace Components {
     interface RboButton {
         "disabled": boolean;
+        "onClick": (event: MouseEvent) => void;
         "text": string;
     }
     interface RboCurrencyInput {
@@ -20,6 +21,10 @@ export namespace Components {
         "unit": string;
     }
     interface RboForm {
+        "apiErrors": string[];
+        "id": string;
+    }
+    interface RboInputControl {
     }
 }
 declare global {
@@ -41,15 +46,23 @@ declare global {
         prototype: HTMLRboFormElement;
         new (): HTMLRboFormElement;
     };
+    interface HTMLRboInputControlElement extends Components.RboInputControl, HTMLStencilElement {
+    }
+    var HTMLRboInputControlElement: {
+        prototype: HTMLRboInputControlElement;
+        new (): HTMLRboInputControlElement;
+    };
     interface HTMLElementTagNameMap {
         "rbo-button": HTMLRboButtonElement;
         "rbo-currency-input": HTMLRboCurrencyInputElement;
         "rbo-form": HTMLRboFormElement;
+        "rbo-input-control": HTMLRboInputControlElement;
     }
 }
 declare namespace LocalJSX {
     interface RboButton {
         "disabled"?: boolean;
+        "onClick"?: (event: MouseEvent) => void;
         "text"?: string;
     }
     interface RboCurrencyInput {
@@ -62,12 +75,17 @@ declare namespace LocalJSX {
         "unit"?: string;
     }
     interface RboForm {
+        "apiErrors"?: string[];
+        "id"?: string;
         "onFormSubmittedEvent"?: (event: CustomEvent<FormSubmittedEvent>) => void;
+    }
+    interface RboInputControl {
     }
     interface IntrinsicElements {
         "rbo-button": RboButton;
         "rbo-currency-input": RboCurrencyInput;
         "rbo-form": RboForm;
+        "rbo-input-control": RboInputControl;
     }
 }
 export { LocalJSX as JSX };
@@ -77,6 +95,7 @@ declare module "@stencil/core" {
             "rbo-button": LocalJSX.RboButton & JSXBase.HTMLAttributes<HTMLRboButtonElement>;
             "rbo-currency-input": LocalJSX.RboCurrencyInput & JSXBase.HTMLAttributes<HTMLRboCurrencyInputElement>;
             "rbo-form": LocalJSX.RboForm & JSXBase.HTMLAttributes<HTMLRboFormElement>;
+            "rbo-input-control": LocalJSX.RboInputControl & JSXBase.HTMLAttributes<HTMLRboInputControlElement>;
         }
     }
 }

@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default     |
-| ---------- | ---------- | ----------- | --------- | ----------- |
-| `disabled` | `disabled` |             | `boolean` | `undefined` |
-| `text`     | `text`     |             | `string`  | `undefined` |
+| Property   | Attribute  | Description | Type                          | Default     |
+| ---------- | ---------- | ----------- | ----------------------------- | ----------- |
+| `disabled` | `disabled` |             | `boolean`                     | `undefined` |
+| `onClick`  | --         |             | `(event: MouseEvent) => void` | `undefined` |
+| `text`     | `text`     |             | `string`                      | `undefined` |
 
 
 ## Dependencies

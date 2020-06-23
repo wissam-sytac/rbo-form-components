@@ -16,15 +16,26 @@
   </style>
 </head>
 <body>
-  <rbo-form>
-    <rbo-currency-input name="downPayment" required="true"></rbo-currency-input>
-    <rbo-currency-input name="monthlyPayment"></rbo-currency-input>
-    <rbo-currency-input name="monthlyPayment" disabled="true"></rbo-currency-input>
+  <rbo-form id="mortgage-calculator">
+    <rbo-input-control>
+      <rbo-currency-input name="downPayment" required="true"></rbo-currency-input>
+    </rbo-input-control>
+    <rbo-input-control>
+      <rbo-currency-input name="monthlyPayment"></rbo-currency-input>
+    </rbo-input-control>
+    <rbo-input-control>
+      <rbo-currency-input name="previousBalance" disabled="true"></rbo-currency-input>
+    </rbo-input-control>
   </rbo-form>
+
+  <div id="debug-box" style="margin-top: 40px; color: green;"></div>
+
   <script>
-    const rboForm = document.querySelector('rbo-form');
-    rboForm.addEventListener('formSubmittedEvent', evt => {
-      window.alert(JSON.stringify(evt.detail.values));
+    var rboForm = document.querySelector('rbo-form');
+    var debugBox = document.getElementById('debug-box');
+    rboForm.addEventListener('formSubmittedEvent', function (evt) {
+      var inputValues = evt.detail.values;
+      debugBox.textContent = 'Submitted values: ' + JSON.stringify(inputValues);
     })
   </script>
 </body>

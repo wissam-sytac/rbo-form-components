@@ -14,7 +14,7 @@
 | `maxWholeLength`    | `max-whole-length` |             | `number` | `6`         |
 | `name` _(required)_ | `name`             |             | `string` | `undefined` |
 | `required`          | `required`         |             | `string` | `'false'`   |
-| `unit`              | `unit`             |             | `string` | `'\u20AC'`  |
+| `unit`              | `unit`             |             | `string` | `'EUR'`     |
 
 
 ## Events

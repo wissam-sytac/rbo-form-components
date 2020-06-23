@@ -1,4 +1,4 @@
-import {Component, h, State, Listen, Event, EventEmitter, Host} from '@stencil/core';
+import {Component, h, State, Listen, Event, EventEmitter, Host, Prop} from '@stencil/core';
 import {FormInputChangeEvent, FormSubmittedEvent} from '../../events';
 
 @Component({
@@ -7,8 +7,11 @@ import {FormInputChangeEvent, FormSubmittedEvent} from '../../events';
   shadow: true
 })
 export class RboForm {
+  @Prop() id: string;
+  @Prop() apiErrors: string[] = []; // @TODO: implement support for api errors
+
   @State() values: object = {};
-  @State() errors: object = {};
+  @State() fieldErrors: object = {};
   @State() isValid: boolean = false;
 
   @Event({
@@ -22,18 +25,13 @@ export class RboForm {
   formInputChangeHandler(event: CustomEvent<FormInputChangeEvent>) {
     const { name, value, errors } = event.detail;
     this.values[name] = value;
-    this.errors[name] = errors;
+    this.fieldErrors[name] = errors;
     this.isValid = this.validateSelf();
-
-    console.log('=======');
-    console.log('Values: ', this.values);
-    console.log('Errors: ', this.errors);
-    console.log('isValid: ', this.isValid);
   }
 
   validateSelf() {
     // Check total number of errors is 0
-    const totalNumberOfErrors = Object.values(this.errors).reduce((acc, errors) => acc + errors.length, 0);
+    const totalNumberOfErrors = Object.values(this.fieldErrors).reduce((acc, errors) => acc + errors.length, 0);
     return totalNumberOfErrors === 0;
   }
 
@@ -41,12 +39,10 @@ export class RboForm {
     evt.preventDefault();
     if (this.isValid) {
       this.formSubmittedEventEmitter.emit({
-        // @TODO: Add font id
-        formId: '__only_one__',
+        formId: this.id,
         values: this.values,
       });
     }
-    // @TODO: what to do if form is invalid?
   }
 
   render() {
@@ -55,7 +51,7 @@ export class RboForm {
         <form onSubmit={this.handleSubmit}>
           <slot/>
           <div class="action-wrap">
-            <rbo-button disabled={!this.isValid} text="Submit"/>
+            <rbo-button disabled={!this.isValid} text="Submit" onClick={this.handleSubmit} />
           </div>
         </form>
       </Host>
